@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Holguín Tourism · Paraíso en Cuba</title>
+  <style>
+    /* ----- RESET & APPLE DESIGN SYSTEM ----- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Helvetica Neue", Helvetica, "Segoe UI", Roboto, system-ui, sans-serif;
+      background: radial-gradient(circle at 10% 20%, rgba(245, 245, 250, 0.95), rgba(225, 232, 245, 0.9)),
+                  linear-gradient(145deg, #e9eef5 0%, #dce3ec 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      position: relative;
+    }
+
+    /* decoración sutil tipo "Apple glass" (orbes difusos) */
+    body::before {
+      content: '';
+      position: fixed;
+      width: 70vmax;
+      height: 70vmax;
+      background: radial-gradient(circle, rgba(0,112,243,0.08) 0%, rgba(0,112,243,0) 70%);
+      top: -20%;
+      left: -20%;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      width: 80vmax;
+      height: 80vmax;
+      background: radial-gradient(circle, rgba(255,126,94,0.06) 0%, rgba(255,126,94,0) 70%);
+      bottom: -30%;
+      right: -20%;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* tarjeta principal — Glassmorphism + elegancia Apple */
+    .card {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-radius: 48px;
+      box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.02), inset 0 1px 0 rgba(255,255,255,0.7);
+      padding: 2rem 2rem 2.2rem;
+      transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 48px -18px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.02);
+      background: rgba(255, 255, 255, 0.8);
+      border-color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* tipografía Apple: suave, legible, con espaciado */
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      background: linear-gradient(125deg, #1C2E4A, #2C3E66);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 0.4rem;
+      line-height: 1.2;
+    }
+
+    .acere-greeting {
+      margin-bottom: 0.75rem;
+    }
+
+    .acere-cta {
+      font-size: 1.2rem;
+      font-weight: 470;
+      color: #3a4a6e;
+      letter-spacing: -0.2px;
+      margin-top: 0.25rem;
+      margin-bottom: 1.2rem;
+      background: rgba(255,255,240,0.4);
+      display: inline-block;
+      padding: 0.2rem 1rem;
+      border-radius: 60px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* imagen estilo Apple: bordes suaves, sombra ligera */
+    img {
+      width: 100%;
+      border-radius: 32px;
+      margin: 1rem 0 1rem;
+      box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+      transition: all 0.4s ease;
+      background-color: #f3f5fa;
+      border: 0.5px solid rgba(255,255,255,0.6);
+    }
+
+    img:hover {
+      transform: scale(1.01);
+      box-shadow: 0 20px 32px -16px rgba(0, 0, 0, 0.25);
+    }
+
+    /* botón principal estilo Apple (azul clásico) */
+    .cta {
+      background: #0071e3;
+      border: none;
+      padding: 14px 30px;
+      font-size: 1rem;
+      font-weight: 500;
+      font-family: inherit;
+      border-radius: 980px;
+      color: white;
+      cursor: pointer;
+      margin: 0.5rem 0 1rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 113, 227, 0.2);
+      letter-spacing: -0.2px;
+      backdrop-filter: blur(2px);
+    }
+
+    .cta:hover {
+      background: #147ce5;
+      transform: scale(1.01);
+      box-shadow: 0 6px 12px rgba(0, 113, 227, 0.25);
+    }
+
+    .cta:active {
+      transform: scale(0.98);
+    }
+
+    /* botón secundario (glass sutil) */
+    button.secondary {
+      background: rgba(110, 120, 140, 0.12);
+      backdrop-filter: blur(8px);
+      border: 0.5px solid rgba(255,255,255,0.7);
+      color: #1d2b48;
+      padding: 10px 24px;
+      font-size: 0.9rem;
+      font-weight: 480;
+      border-radius: 980px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      box-shadow: none;
+    }
+
+    button.secondary:hover {
+      background: rgba(110, 120, 140, 0.22);
+      transform: scale(1.01);
+      border-color: rgba(255,255,255,0.9);
+    }
+
+    button.secondary:active {
+      transform: scale(0.97);
+    }
+
+    /* panel de información minimalista */
+    .info {
+      margin-top: 2rem;
+      padding-top: 1.2rem;
+      border-top: 0.8px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.8rem;
+      color: #4a5568;
+      background: rgba(245, 248, 255, 0.4);
+      border-radius: 40px;
+      padding: 0.9rem 1.2rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .info p {
+      margin: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 440;
+      letter-spacing: -0.2px;
+    }
+
+    .info strong {
+      font-weight: 590;
+      color: #1e3a5f;
+      background: rgba(255,255,245,0.6);
+      padding: 2px 8px;
+      border-radius: 30px;
+      font-size: 0.75rem;
+    }
+
+    /* contenedor flexible para alinear botón secundario en info */
+    .info button.secondary {
+      margin: 0;
+      padding: 6px 18px;
+      font-size: 0.75rem;
+      background: rgba(0,0,0,0.03);
+      backdrop-filter: blur(10px);
+    }
+
+    /* responsividad perfecta estilo Apple */
+    @media (max-width: 580px) {
+      .card {
+        padding: 1.5rem;
+        border-radius: 36px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      .acere-cta {
+        font-size: 1rem;
+      }
+      .info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+      .cta {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* animación sutil de entrada */
+    @keyframes fadeSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .card {
+      animation: fadeSlideUp 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+    }
+
+    /* mejora para el texto de carga */
+    .acere-greeting:empty::before {
+      content: "✨";
+      opacity: 0.6;
+    }
+
+    /* detalles Apple: focus ring suave */
+    button:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <!-- Elementos que Acere AI personaliza dinámicamente (sin alterar IDs/clases) -->
+    <h1 class="acere-greeting">Cargando experiencia...</h1>
+    <p class="acere-cta">Descubre lo que Holguín tiene para ti</p>
+    <button class="cta" id="btnDescubre">Ver ofertas exclusivas</button>
+    <img id="acere-image" src="https://via.placeholder.com/500x300?text=Cargando..." alt="Vistas de Holguín, Cuba">
+
+    <div class="info">
+      <p>🌍 Tu país detectado: <strong id="pais-detectado">(calculando...)</strong></p>
+      <p>🆔 Session ID: <strong id="session-id">(cargando)</strong></p>
+      <button class="secondary" id="btnEvento">📊 Enviar evento personalizado</button>
+    </div>
+  </div>
+
+  <!-- 🔥 Script de Acere AI (apunta a backend en Render) – totalmente funcional -->
+  <script 
+    src="https://acere-ai.onrender.com/static/acere.js"
+    data-api-url="https://acere-ai.onrender.com">
+  </script>
+
+  <!-- Código adicional para mostrar datos y eventos manuales (preservado íntegramente) -->
+  <script>
+    // Esperar a que Acere AI termine la personalización
+    setTimeout(() => {
+      const sessionId = localStorage.getItem('acere_session_id');
+      if (sessionId) {
+        document.getElementById('session-id').innerText = sessionId.slice(0, 8) + '...';
+      }
+      // Mostrar el país mediante el endpoint identify sin interferir con Acere AI
+      fetch('https://acere-ai.onrender.com/api/identify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ip: 'auto',  // El backend detectará la IP real del visitante
+          url: window.location.href,
+          user_agent: navigator.userAgent
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data && data.country) {
+          document.getElementById('pais-detectado').innerText = data.country;
+        } else {
+          document.getElementById('pais-detectado').innerText = 'Cuba 🌴';
+        }
+      })
+      .catch(err => {
+        console.error('Error obteniendo país:', err);
+        document.getElementById('pais-detectado').innerText = 'Holguín ✨';
+      });
+    }, 1500);
+
+    // Botón para enviar evento personalizado (preservado)
+    const eventBtn = document.getElementById('btnEvento');
+    if (eventBtn) {
+      eventBtn.addEventListener('click', () => {
+        if (window.AcereAI && window.AcereAI.getSessionId()) {
+          window.AcereAI.sendEvent('custom_click', { button: 'enviar evento', page: 'inicio' });
+          alert('✅ Evento enviado al backend · análisis personalizado');
+        } else {
+          alert('⏳ La personalización aún se está cargando, espera un instante');
+        }
+      });
+    }
+
+    // Botón "Ver ofertas" también envía evento y simula redirección (demo)
+    const descubreBtn = document.getElementById('btnDescubre');
+    if (descubreBtn) {
+      descubreBtn.addEventListener('click', () => {
+        if (window.AcereAI) {
+          window.AcereAI.sendEvent('cta_click', { cta: 'Ver ofertas', destino: 'paquetes_holguin' });
+          alert('🎁 Redirigiendo a ofertas exclusivas de Holguín... (demo interactiva)');
+        } else {
+          alert('🔄 Inicializando motor de experiencias, inténtalo de nuevo');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
